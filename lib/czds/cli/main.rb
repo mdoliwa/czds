@@ -21,7 +21,7 @@ module CZDS
         tld = options[:tld] || config_file['tld'] || CZDS::Configuration::DEFAULTS[:tld]
 
         zone_file = CZDS::ZoneFile.new(tld)
-        puts zone_file.updated_at
+        zone_file.download
       end
 
       private
