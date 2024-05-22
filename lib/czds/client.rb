@@ -24,8 +24,10 @@ module CZDS
     def_delegators :@config, :username, :password, :download_dir, :timestamp_file_name, :user_agent
 
     def initialize
-      @config = self.class.config
       @zone_file_statuses = {}
+      @config = self.class.config
+
+      raise NoCredentialsError if @config.username.nil? || @config.password.nil?
     end
 
     def connection(url)
