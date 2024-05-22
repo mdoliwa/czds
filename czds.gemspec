@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 3.0.0"
 
   spec.bindir = "bin"
+  spec.files = Dir["lib/**/*", "LICENSE", "README.md"]
   spec.executables = ["czds"]
 
   spec.add_dependency "faraday", "~> 2.0"
