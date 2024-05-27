@@ -20,8 +20,6 @@ module CZDS
       client.download_zone_file(tld)
     end
 
-    private
-
     def status
       @status ||= client.zone_file_status(tld)
     end

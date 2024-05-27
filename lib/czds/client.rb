@@ -86,7 +86,7 @@ module CZDS
 
       raise FileSizeError if File.size(file_path) != status.length
 
-      status.length
+      status.to_h.merge(file_path:)
     end
 
     private

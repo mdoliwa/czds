@@ -24,6 +24,23 @@ module CZDS
         zone_file.download
       end
 
+      desc "status", "Show zone file status"
+      option :config_file, type: :string, default: './czds.config.json', desc: 'Path to config file'
+      option :tld, type: :string, desc: 'Top-level domain, default: com'
+      option :no_timestamp, type: :boolean, desc: 'Disable timestamp in file name'
+      option :username, type: :string, desc: 'CZDS username'
+      option :password, type: :string, desc: 'CZDS password'
+
+      def status
+        config_file = load_config(options[:config_file])
+        configure_client(options, config_file)
+
+        tld = options[:tld] || config_file['tld'] || CZDS::Configuration::DEFAULTS[:tld]
+
+        zone_file = CZDS::ZoneFile.new(tld)
+        puts zone_file.status.to_h
+      end
+
       private
 
       def configure_client(options, config_file)
